@@ -1,0 +1,13 @@
+﻿<Project>
+  <ItemGroup>
+    <None Update="**/*.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>%(Filename).cs</LastGenOutput>
+    </None>
+    <Compile Update="**/*.cs">
+      <DesignTime Condition="Exists('%(RelativeDir)$([System.IO.Path]::GetFileNameWithoutExtension(%(Filename))).tt')">True</DesignTime>
+      <AutoGen Condition="Exists('%(RelativeDir)$([System.IO.Path]::GetFileNameWithoutExtension(%(Filename))).tt')">True</AutoGen>
+      <DependentUpon Condition="Exists('%(RelativeDir)$([System.IO.Path]::GetFileNameWithoutExtension(%(Filename))).tt')">$([System.IO.Path]::GetFileNameWithoutExtension(%(Filename))).tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>
